@@ -4,8 +4,8 @@ import axios from 'axios';
 const getApiUrl = () => {
   // For production (Render)
   if (process.env.NODE_ENV === 'production') {
-    // Replace with your actual backend URL
-    return 'https://user-management-api.onrender.com/api';
+    
+    return 'https://user-management-app-server-02mn.onrender.com/api';
   }
   // For development
   return 'http://localhost:3001/api';
