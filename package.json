@@ -3,21 +3,18 @@
   "version": "1.0.0",
   "description": "Full-stack User Management Application",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd server && npm run dev",
+    "start": "cd server && npm start",
     "client": "cd client && npm start",
-    "install-all": "npm install && cd client && npm install && cd ../server && npm install",
-    "build": "cd client && npm run build"
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd client && npm run build",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.0"
   },
-  "dependencies": {
-    "axios": "^1.14.0",
-    "rea": "^0.0.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-scripts": "^5.0.1",
-    "react-toastify": "^11.0.5"
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
   }
 }

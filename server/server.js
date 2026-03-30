@@ -1,11 +1,4 @@
 // server/server.js
-try {
-  require('json-server');
-} catch (err) {
-  console.error('❌ Missing dependencies! Run: npm install');
-  process.exit(1);
-}
-
 const jsonServer = require('json-server');
 const path = require('path');
 const cors = require('cors');
