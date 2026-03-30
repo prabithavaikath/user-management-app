@@ -47,20 +47,19 @@ export const userFields = [
     },
     placeholder: 'Enter email address',
     order: 4
+  },  
+  {
+    name: 'dateOfBirth',
+    label: 'Date of Birth',
+    type: 'date',
+    required: false,
+    validation: {
+      pattern: '^\\d{4}-\\d{2}-\\d{2}$',
+      message: 'Please enter a valid date (YYYY-MM-DD)'
+    },
+    placeholder: 'Enter date of birth',
+    order: 5
   }
-  // To add a new field, simply add a new object here:
-  // {
-  //   name: 'dateOfBirth',
-  //   label: 'Date of Birth',
-  //   type: 'date',
-  //   required: false,
-  //   validation: {
-  //     pattern: '^\\d{4}-\\d{2}-\\d{2}$',
-  //     message: 'Please enter a valid date (YYYY-MM-DD)'
-  //   },
-  //   placeholder: 'Enter date of birth',
-  //   order: 5
-  // }
 ];
 
 // Helper function to get initial form state

@@ -15,11 +15,19 @@
       "email": "jane.smith@example.com"
     },
     {
+      "id": 3,
+      "firstName": "Alice",
+      "lastName": "Johnson",
+      "phoneNumber": "+1122334455",
+      "email": "alice.johnson@example.com"
+    },
+    {
       "firstName": "Prabitha",
       "lastName": "Vaikath",
-      "phoneNumber": "9876567876",
-      "email": "abcd@gmail.com",
-      "id": 3
+      "phoneNumber": "08898005508",
+      "email": "prabitha.vaikath@gmail.com",
+      "dateOfBirth": "2026-03-04",
+      "id": 4
     }
   ]
 }
