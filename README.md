@@ -1,15 +1,13 @@
 # User Management Application
 
-A modern, extensible React-based CRUD application for managing user data with a configuration-driven architecture and RESTful API.
+A modern, extensible React-based CRUD application for managing user data with configuration-driven architecture.
 
-![React](https://img.shields.io/badge/React-18.2.0-blue)
-![Node](https://img.shields.io/badge/Node-14+-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)
+## Live Demo
 
+- **Frontend:** https://user-management-app-1-mblf.onrender.com
+- **Backend API:** https://user-management-app-server-02mn.onrender.com/api/users
 
-
-## ✨ Features
+## Features
 
 - ✅ **Complete CRUD Operations** - Create, Read, Update, Delete users
 - ✅ **Form Validation** - Real-time validation with regex patterns
@@ -18,35 +16,30 @@ A modern, extensible React-based CRUD application for managing user data with a 
 - ✅ **Search Functionality** - Search users by name, email, or phone
 - ✅ **Toast Notifications** - User-friendly success/error messages
 - ✅ **Loading States** - Visual feedback during API calls
-- ✅ **Error Handling** - Comprehensive error handling and retry options
-- ✅ **RESTful API** - JSON Server backend with full CRUD support
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
-- **React 18** - UI Framework
-- **Axios** - HTTP Client
-- **React Toastify** - Notifications
-- **React Icons** - Icon library
-- **CSS3** - Styling with modern features
+- React 18 with Hooks
+- Axios for API calls
+- React Toastify for notifications
+- React Icons for icons
+- CSS3 with modern features
 
 ### Backend
-- **JSON Server** - Mock REST API
-- **Express** - Web framework
-- **CORS** - Cross-origin resource sharing
+- JSON Server (RESTful API)
+- Express.js
+- CORS enabled
 
-### Development Tools
-- **Concurrently** - Run multiple commands
-- **Nodemon** - Auto-restart server during development
+### Deployment
+- Render.com (both frontend and backend)
 
-## 📦 Prerequisites
+## Setup Instructions
 
-Before you begin, ensure you have the following installed:
+### Prerequisites
+- Node.js (v14 or higher)
+- npm (v6 or higher)
 
-- **Node.js** (v14 or higher) - [Download](https://nodejs.org/)
-- **npm** (v6 or higher) - Comes with Node.js
-- **Git** - [Download](https://git-scm.com/)
-- A modern web browser (Chrome, Firefox, Safari, Edge)
 
 ## 🚀 Installation
 
@@ -89,11 +82,7 @@ Method 1: Run Both Servers Together (Recommended)
 bash
 # From the root directory
 npm run dev
-This will start:
 
-Backend: http://localhost:3001
-
-Frontend: http://localhost:3000
 
 This will start:
 
