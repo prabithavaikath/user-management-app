@@ -1,13 +1,23 @@
 import axios from 'axios';
 
-// Set the correct API URL
-const API_BASE_URL = 'http://localhost:3001/api'; // Hardcode for now to test
+// Get the API URL based on environment
+const getApiUrl = () => {
+  // For production (Render)
+  if (process.env.NODE_ENV === 'production') {
+    // Replace with your actual backend URL
+    return 'https://user-management-api.onrender.com/api';
+  }
+  // For development
+  return 'http://localhost:3001/api';
+};
+
+const API_BASE_URL = getApiUrl();
 
 console.log('API Base URL:', API_BASE_URL);
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -37,7 +47,7 @@ api.interceptors.response.use(
       console.error('Response data:', error.response.data);
       console.error('Response status:', error.response.status);
     } else if (error.request) {
-      console.error('No response received. Check if server is running.');
+      console.error('No response received from server');
     }
     return Promise.reject(error);
   }
@@ -50,6 +60,7 @@ export const userAPI = {
   createUser: (userData) => api.post('/users', userData),
   updateUser: (id, userData) => api.put(`/users/${id}`, userData),
   deleteUser: (id) => api.delete(`/users/${id}`),
+  healthCheck: () => api.get('/health'),
 };
 
 export default api;
