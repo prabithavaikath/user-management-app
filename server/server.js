@@ -1,3 +1,11 @@
+// server/server.js
+try {
+  require('json-server');
+} catch (err) {
+  console.error('❌ Missing dependencies! Run: npm install');
+  process.exit(1);
+}
+
 const jsonServer = require('json-server');
 const path = require('path');
 const cors = require('cors');
@@ -9,26 +17,27 @@ const middlewares = jsonServer.defaults();
 
 // Enable CORS for frontend
 server.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
-  credentials: true
+  origin: true,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Add middleware
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
-// Add timestamp to responses
+// Log all requests for debugging
 server.use((req, res, next) => {
-  res.header('X-Powered-By', 'User Management API');
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.url}`);
   next();
 });
 
-// Validation middleware for POST and PUT
+// Validation middleware
 server.use((req, res, next) => {
   if (req.method === 'POST' || req.method === 'PUT') {
     const { firstName, lastName, email, phoneNumber } = req.body;
     
-    // Basic validation
     if (!firstName || !lastName || !email || !phoneNumber) {
       return res.status(400).json({
         error: 'Missing required fields',
@@ -36,13 +45,11 @@ server.use((req, res, next) => {
       });
     }
     
-    // Email validation
     const emailRegex = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
     
-    // Phone validation
     if (phoneNumber.length < 10) {
       return res.status(400).json({ error: 'Phone number must be at least 10 characters' });
     }
@@ -55,35 +62,38 @@ server.get('/health', (req, res) => {
   res.json({ 
     status: 'healthy', 
     timestamp: new Date().toISOString(),
-    uptime: process.uptime()
+    uptime: process.uptime(),
+    environment: process.env.NODE_ENV || 'production'
   });
 });
 
-// Custom endpoint for statistics
-server.get('/api/stats', (req, res) => {
-  const db = router.db;
-  const users = db.get('users').value();
-  res.json({
-    totalUsers: users.length,
+// Test endpoint
+server.get('/api/test', (req, res) => {
+  res.json({ 
+    message: 'API is working!',
     timestamp: new Date().toISOString()
   });
 });
 
-// Use default router
+// Use router for /api routes
 server.use('/api', router);
 
-// Error handling middleware
+// Error handling
 server.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Something went wrong!' });
+  console.error('Server Error:', err.stack);
+  res.status(500).json({ 
+    error: 'Something went wrong!',
+    message: err.message 
+  });
 });
 
-// Get port from environment
 const PORT = process.env.PORT || 3001;
 
-// Start server
 server.listen(PORT, () => {
-  console.log(`🚀 JSON Server is running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
   console.log(`📊 API URL: http://localhost:${PORT}/api`);
-  console.log(`❤️  Health check: http://localhost:${PORT}/health`);
+  console.log(`❤️  Health: http://localhost:${PORT}/health`);
+  console.log(`🧪 Test: http://localhost:${PORT}/api/test`);
+  console.log(`👥 Users: http://localhost:${PORT}/api/users`);
+  console.log(`✅ Server is ready to accept requests`);
 });
